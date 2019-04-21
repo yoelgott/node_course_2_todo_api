@@ -4,9 +4,9 @@ const request = require('supertest');
 var {app} = require('./../server');
 const {Todo} = require('./../db/models/todo');
 
-// beforeEach((done) => {
-//     Todo.remove({}).then(() => done());
-// });
+beforeEach((done) => {
+    Todo.remove({}).then(() => done());
+});
 
 describe('Post /todos', () => {
     it('should create a new todo', (done) => {
@@ -18,9 +18,7 @@ describe('Post /todos', () => {
 
             request(app)
             .post('/todos')
-            .send({
-                text
-            })
+            .send({text})
             .expect(200)
             .expect((rest) => {
                 expect(rest.body.text).toBe(text);
@@ -38,7 +36,7 @@ describe('Post /todos', () => {
             });
         });
     });
-    it('should nor  create any todo', (done) => {
+    it('should not create any todos', (done) => {
         request(app)
         .post('/todos')
         .send({})
