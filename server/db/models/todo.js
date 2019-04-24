@@ -22,7 +22,7 @@ var Todo = mongoose.model('Todo' ,{
 // });
 
 // new_todo.save().then((res) => {
-//     console.log('saved todo\n', res);
+//     console.log('saved todo\n', res);    
 // }, (e) => {
 //     console.log('unable to save', e);   
 // });

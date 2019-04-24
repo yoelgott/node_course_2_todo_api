@@ -1,12 +1,25 @@
 const expect = require('expect');
 const request = require('supertest');
+const {ObjectId} = require('mongodb');
 
 var {app} = require('./../server');
 const {Todo} = require('./../db/models/todo');
 
-beforeEach((done) => {
-    Todo.remove({}).then(() => done());
-});
+// const todos_ = [{
+//     __id: new ObjectId(),
+//     text: 'eat supper'
+// }, {
+//     __id: new ObjectId(),
+//     text: 'play'
+// }];
+
+
+// beforeEach((done) => {
+//     Todo.remove({}).then(() => {
+//         return Todo.insertMany(todos_);
+//     }).then(() => done());
+// });
+
 
 describe('Post /todos', () => {
     it('should create a new todo', (done) => {
@@ -49,4 +62,18 @@ describe('Post /todos', () => {
             };
         });
     });
+
+    describe('GET /todos/:id', () => {
+        it('should return todo doc', (done) => {
+            request(app)
+            .get(`/todos/5cbd55a8b148da0170e014bb`)
+            // .expect(200)
+            .expect((res) => {
+                expect(res.text).toBe('play');
+            })
+            .end(done);
+        });
+        // it('should return a ')
+    });
+
 });
