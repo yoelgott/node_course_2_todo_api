@@ -106,6 +106,26 @@ app.patch('/todos/:id', (req, res) => {
     });
 });
 
+app.post('/users', (req, res) => {
+    var body = _.pick(req.body, ['email, password']);
+
+    //validate
+    // if()
+
+    var new_user = new user({
+        email: body.email,
+        password: body.password
+    });
+
+    new_user.save().then((doc) => {
+        console.log('saved it!');
+        res.send(doc);
+    }).catch((e) => {
+        console.log('could not save it', e);
+        res.status(400).send(e);
+    });
+});
+
 app.listen(port, () => {
     console.log(`started on port ${port}`);
 });

@@ -8,7 +8,7 @@
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'"
   },
-  "engines":{
+  "engines": {
     "node": "11.13.0"
   },
   "author": "",
@@ -18,7 +18,8 @@
     "express": "^4.16.4",
     "lodash": "^4.17.11",
     "mongodb": "^3.2.3",
-    "mongoose": "^5.5.2"
+    "mongoose": "^5.5.2",
+    "validator": "^10.11.0"
   },
   "devDependencies": {
     "expect": "^24.7.1",
