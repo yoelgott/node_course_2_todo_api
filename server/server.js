@@ -6,6 +6,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./db/models/todo');
 var {user} = require('./db/models/users');
+var {authenticate} = require('./middleware/authenticate');
 
 var app = express();
 
@@ -120,6 +121,10 @@ app.post('/users', (req, res) => {
         console.log('could not save it', e);
         res.status(400).send(e);
     });
+});
+
+app.get('/users/me', authenticate, (req, res) => {
+    res.send(req.user);
 });
 
 app.listen(port, () => {
