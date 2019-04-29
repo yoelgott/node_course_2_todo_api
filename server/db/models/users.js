@@ -55,6 +55,15 @@ user_schema.statics.find_by_token = function (token) {
     });
 };
 
+user_schema.methods.remove_token = function (token) {
+    var user = this;
+    return user.update({
+        $pull: {
+            tokens: {token}
+        }
+    });
+};
+
 user_schema.pre('save', function (next) {
     var user = this;
 

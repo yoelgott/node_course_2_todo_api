@@ -146,6 +146,14 @@ app.post('/users/login', (req, res) => {
     });
 });
 
+app.delete('/users/me/token', authenticate, (req, res) => {
+    req.user.remove_token(req.token).then(() => {
+        res.status(200).send('logged out successfuly', doc);
+    }, () => {
+        res.status(400).send('wrong token');
+    });
+});
+
 app.listen(port, () => {
     console.log(`started on port ${port}`);
 });
